@@ -10,5 +10,6 @@ void main() {
     await r.expectFindAllProductsCard();
     await r.tapDropDownButton();
     expect(find.byKey(MoreMenuButton.signInKey), findsOneWidget);
+    await r.authRobot.openEmailPasswordSignInScreen();
   });
 }
