@@ -53,6 +53,12 @@ class AuthRobot {
     await tester.pumpAndSettle();
   }
 
+  Future<void> signinWithEmailAndPassword(String testEmail, String testPassword) async {
+    await enterEmail(testEmail);
+    await enterPassword(testPassword);
+    await tester.pumpAndSettle();
+  }
+
   Future<void> enterEmail(String email) async {
     final emailField = find.byKey(EmailPasswordSignInScreen.emailKey);
     expect(emailField, findsOneWidget);
