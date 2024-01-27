@@ -56,6 +56,7 @@ class AuthRobot {
   Future<void> signinWithEmailAndPassword(String testEmail, String testPassword) async {
     await enterEmail(testEmail);
     await enterPassword(testPassword);
+    await tapEmailAndPasswordSubmitButton();
     await tester.pumpAndSettle();
   }
 
