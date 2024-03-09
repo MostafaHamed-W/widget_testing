@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/src/common_widgets/primary_button.dart';
 import 'package:ecommerce_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app/src/features/authentication/presentation/account/account_screen.dart';
+import 'package:ecommerce_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
+import 'package:ecommerce_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:ecommerce_app/src/utils/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +11,26 @@ import 'package:flutter_test/flutter_test.dart';
 class AuthRobot {
   AuthRobot(this.tester);
   final WidgetTester tester;
+
+  Future<void> pumbEmailAndPasswordSigninScreen({
+    required EmailPasswordSignInFormType formType,
+    void Function()? onSignedIn,
+    FakeAuthRepository? authRepository,
+  }) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          if (authRepository != null) authRepositoryProvider.overrideWithValue(authRepository),
+        ],
+        child: MaterialApp(
+          home: EmailPasswordSignInContents(
+            onSignedIn: onSignedIn,
+            formType: EmailPasswordSignInFormType.signIn,
+          ),
+        ),
+      ),
+    );
+  }
 
   Future<void> pumpAccountScreenWidget({FakeAuthRepository? authRepository}) async {
     await tester.pumpWidget(
@@ -20,6 +43,12 @@ class AuthRobot {
         ),
       ),
     );
+  }
+
+  Future<void> tapEmailAndPasswordSubmitButton() async {
+    final primaryButton = find.byType(PrimaryButton);
+    await tester.tap(primaryButton);
+    await tester.pump();
   }
 
   Future<void> tapLogoutButton() async {
