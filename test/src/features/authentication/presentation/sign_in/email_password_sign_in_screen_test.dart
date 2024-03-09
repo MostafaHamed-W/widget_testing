@@ -60,6 +60,7 @@ void main() {
           verify(
             () => authRepository.signInWithEmailAndPassword(testEmail, testPassword),
           ).called(1);
+          await r.expectErrorNotFound();
           expect(didSignIn, true);
         },
       );
