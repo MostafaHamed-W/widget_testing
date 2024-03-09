@@ -19,7 +19,19 @@ void main() {
   );
 
   testWidgets(
-    'Cancel logout failure',
+    'Submit logout sucess',
+    (tester) async {
+      final r = AuthRobot(tester);
+      await r.pumpAccountScreenWidget();
+      await r.tapLogoutButton();
+      await r.expectLogoutDialogFound();
+      await r.tapAlertLogoutButton();
+      await r.expectLogoutDialogNotFound();
+      await r.expectErrorNotFound();
+    },
+  );
+  testWidgets(
+    'Submit logout failure',
     (tester) async {
       final r = AuthRobot(tester);
       final mockAuthRepository = MockAuthRepository();

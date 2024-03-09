@@ -60,6 +60,6 @@ class AuthRobot {
 
   Future<void> expectErrorNotFound() async {
     final errorFinder = find.text('Error');
-    expect(errorFinder, findsOneWidget);
+    expect(errorFinder, findsNothing);
   }
 }

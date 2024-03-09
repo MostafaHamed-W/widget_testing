@@ -22,7 +22,7 @@ class FakeAuthRepository {
   }
 
   Future<void> signOut() async {
-    throw (Exception('error'));
+    // throw (Exception('error'));
     _authState.value = null;
   }
 
