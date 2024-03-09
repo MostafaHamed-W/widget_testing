@@ -62,4 +62,9 @@ class AuthRobot {
     final errorFinder = find.text('Error');
     expect(errorFinder, findsNothing);
   }
+
+  Future<void> expectLoadingIndicator() async {
+    final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
+    expect(loadingIndicatorFinder, findsOneWidget);
+  }
 }

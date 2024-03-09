@@ -49,4 +49,28 @@ void main() {
       await r.expectErrorFound();
     },
   );
+
+  testWidgets(
+    'Submit logout with loading state',
+    (tester) async {
+      final r = AuthRobot(tester);
+      final mockAuthRepository = MockAuthRepository();
+      when(mockAuthRepository.signOut).thenAnswer(
+        (_) => Future.delayed(
+          const Duration(seconds: 2),
+        ),
+      );
+      when(mockAuthRepository.authStateChanges).thenAnswer(
+        (_) => Stream.value(
+          const AppUser(uid: '123', email: 'xwafy@gmail.com'),
+        ),
+      );
+      await r.pumpAccountScreenWidget(authRepository: mockAuthRepository);
+      await tester.runAsync(() async {
+        await r.tapLogoutButton();
+        await r.tapAlertLogoutButton();
+      });
+      await r.expectLoadingIndicator();
+    },
+  );
 }
