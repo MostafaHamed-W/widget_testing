@@ -20,6 +20,9 @@ void main() {
       r.expectFindAllProductsCard();
       await r.tapDropDownButton();
       await r.authRobot.openAccountScreen();
+      await r.authRobot.tapLogoutButton();
+      await r.authRobot.tapAlertLogoutButton();
+      r.expectFindAllProductsCard();
     },
   );
 }
