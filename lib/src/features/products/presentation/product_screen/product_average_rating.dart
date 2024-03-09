@@ -16,15 +16,15 @@ class ProductAverageRating extends StatelessWidget {
           color: Colors.amber,
         ),
         gapW8,
-        Text(
-          product.avgRating.toStringAsFixed(1),
-          style: Theme.of(context).textTheme.bodyText1,
+        Expanded(
+          child: Text(
+            product.avgRating.toStringAsFixed(1),
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
         ),
         gapW8,
         Text(
-          product.numRatings == 1
-              ? '1 rating'
-              : '${product.numRatings} ratings',
+          product.numRatings == 1 ? '1 rating' : '${product.numRatings} ratings',
           style: Theme.of(context).textTheme.bodyText2,
         ),
       ],
