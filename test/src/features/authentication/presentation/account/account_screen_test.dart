@@ -15,8 +15,17 @@ void main() {
         ),
       );
 
-      final finder = find.text('uid');
+      final finder = find.text('Logout');
       expect(finder, findsOneWidget);
+      await tester.tap(finder);
+      await tester.pump();
+      final alertDialogFinder = find.text('Are you sure?');
+      expect(alertDialogFinder, findsOneWidget);
+      final cancelButtonFinder = find.text('Cancel');
+      expect(cancelButtonFinder, findsOneWidget);
+      await tester.tap(cancelButtonFinder);
+      await tester.pump();
+      expect(alertDialogFinder, findsNothing);
     },
   );
 }
