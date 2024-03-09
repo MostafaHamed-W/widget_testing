@@ -46,6 +46,13 @@ class AuthRobot {
     );
   }
 
+  Future<void> openAccountScreen() async {
+    final finder = find.byKey(MoreMenuButton.accountKey);
+    expect(finder, findsOneWidget);
+    await tester.tap(finder);
+    await tester.pumpAndSettle();
+  }
+
   Future<void> openEmailPasswordSignInScreen() async {
     final finder = find.byKey(MoreMenuButton.signInKey);
     expect(finder, findsOneWidget);

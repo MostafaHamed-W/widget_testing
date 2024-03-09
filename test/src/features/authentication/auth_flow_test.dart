@@ -18,6 +18,8 @@ void main() {
       await r.authRobot.openEmailPasswordSignInScreen();
       await r.authRobot.signinWithEmailAndPassword(testEmail, testPassword);
       r.expectFindAllProductsCard();
+      await r.tapDropDownButton();
+      await r.authRobot.openAccountScreen();
     },
   );
 }
