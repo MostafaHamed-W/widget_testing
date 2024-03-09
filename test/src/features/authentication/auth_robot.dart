@@ -89,7 +89,7 @@ class AuthRobot {
     final finder = find.text('Logout');
     expect(finder, findsOneWidget);
     await tester.tap(finder);
-    await tester.pumpAndSettle();
+    await tester.pump();
   }
 
   Future<void> expectLogoutDialogFound() async {
