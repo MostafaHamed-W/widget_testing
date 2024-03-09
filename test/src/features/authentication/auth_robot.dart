@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/src/features/authentication/presentation/account/account_screen.dart';
+import 'package:ecommerce_app/src/utils/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,7 +26,7 @@ class AuthRobot {
   }
 
   Future<void> expectLogoutDialogFound() async {
-    final alertDialogFinder = find.text('Are you sure?');
+    final alertDialogFinder = find.byKey(kAlertDialogKey);
     expect(alertDialogFinder, findsOneWidget);
   }
 
@@ -37,7 +38,7 @@ class AuthRobot {
   }
 
   Future<void> expectLogoutDialogNotFound() async {
-    final alertDialogFinder = find.text('Are you sure?');
+    final alertDialogFinder = find.byKey(kAlertDialogKey);
     expect(alertDialogFinder, findsNothing);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_app/src/utils/keys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ Future<bool?> showAlertDialog({
       builder: (context) => AlertDialog(
         title: Text(title),
         content: content != null ? Text(content) : null,
+        key: kAlertDialogKey,
         actions: <Widget>[
           if (cancelActionText != null)
             TextButton(
@@ -38,6 +40,7 @@ Future<bool?> showAlertDialog({
     context: context,
     barrierDismissible: cancelActionText != null,
     builder: (context) => CupertinoAlertDialog(
+      key: kAlertDialogKey,
       title: Text(title),
       content: content != null ? Text(content) : null,
       actions: <Widget>[
@@ -68,8 +71,7 @@ Future<void> showExceptionAlertDialog({
       defaultActionText: 'OK'.hardcoded,
     );
 
-Future<void> showNotImplementedAlertDialog({required BuildContext context}) =>
-    showAlertDialog(
+Future<void> showNotImplementedAlertDialog({required BuildContext context}) => showAlertDialog(
       context: context,
       title: 'Not implemented'.hardcoded,
     );
